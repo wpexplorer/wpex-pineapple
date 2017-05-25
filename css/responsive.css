@@ -1,0 +1,29 @@
+/*------------------------------------------------------------------
+[# General]
+-------------------------------------------------------------------*/
+.wpex-container { max-width: 90% }
+.wpex-container .wpex-container { max-width: none }
+
+/*------------------------------------------------------------------
+[# Anything under 959px]
+-------------------------------------------------------------------*/
+@media only screen and (max-width: 959px) {
+	.wpex-site-branding { max-width: none; float: none; }
+	.wpex-content-area,
+	.wpex-sidebar { width: 100%; float: none !important; max-width: none; padding: 0; }
+	.wpex-sidebar { clear: both; padding: 50px 0 0; margin: 0 auto; }
+}
+
+/*------------------------------------------------------------------
+[# Anything under 767px]
+-------------------------------------------------------------------*/
+@media only screen and (max-width: 767px) { 
+	.wpex-row .wpex-col { float: none; width: 100%; clear: both; }
+}
+
+/*------------------------------------------------------------------
+[# Anything under 600px]
+-------------------------------------------------------------------*/
+@media only screen and (max-width: 600px) { 
+	.wpex-sidebar { max-width: none }
+}

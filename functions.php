@@ -1,0 +1,504 @@
+<?php
+/**
+ * Theme functions and definitions.
+ *
+ * Sets up the theme and provides some helper functions
+ *
+ * When using a child theme (see http://codex.wordpress.org/Theme_Development
+ * and http://codex.wordpress.org/Child_Themes), you can override certain
+ * functions (those wrapped in a function_exists() call) by defining them first
+ * in your child theme's functions.php file. The child theme's functions.php
+ * file is included before the parent theme's file, so the child theme
+ * functions would be used.
+ *
+ *
+ * For more information on hooks, actions, and filters,
+ * see http://codex.wordpress.org/Plugin_API
+ *
+ * @package   Pineapple WordPress Theme
+ * @author    Alexander Clarke
+ * @copyright Copyright (c) 2015, WPExplorer.com
+ * @link      http://www.wpexplorer.com
+ * @since     1.0.0
+ */
+
+// Theme info
+function wpex_get_theme_info() {
+	return array(
+		'name'      => 'Pineapple',
+		'dir'       => get_template_directory_uri() .'/inc/',
+		'url'       => 'http://www.wpexplorer.com/pineapple-free-wordpress-theme/',
+		'changelog' => 'http://www.wpexplorer.com/changelogs/pineapple/',
+	);
+}
+
+class WPEX_Pineapple_Theme_Setup {
+
+	/**
+	 * Start things up
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 */
+	public function __construct() {
+
+		// Paths
+		$this->template_dir     = get_template_directory();
+		$this->template_dir_uri = get_template_directory_uri();
+
+		// Load theme files
+		add_action( 'after_setup_theme', array( $this, 'load_files' ) );
+
+		// Theme setup
+		add_action( 'after_setup_theme', array( $this, 'setup' ) );
+
+		// Register sidebars
+		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
+
+		// Admin only
+		if ( is_admin() ) {
+
+			// Updates
+			require_once( $this->template_dir .'/inc/updates.php' );
+
+			// Add new post formats
+			add_filter( 'mce_buttons_2', array( $this, 'enable_editor_formats' ) );
+			add_filter( 'tiny_mce_before_init', array( $this, 'add_editor_formats' ) );
+
+		}
+
+		// Front-end only
+		else {
+
+			// Tweak excerpt more text
+			add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
+
+			// Add responsive class to embeds
+			add_filter( 'embed_oembed_html', array( $this, 'embed_oembed_html' ), 99, 4 );
+
+			// Add custom body classes
+			add_filter( 'body_class', array( $this, 'body_classes' ) );
+
+			// Add theme meta generator
+			add_action( 'wp_head', array( $this, 'theme_meta_generator' ), 9999 );
+
+			// Load theme CSS
+			add_action( 'wp_enqueue_scripts', array( $this, 'theme_css' ) );
+
+			// Load responsive CSS
+			add_action( 'wp_enqueue_scripts', array( $this, 'responsive_css' ), 999 );
+
+			// Load theme js scripts
+			add_action( 'wp_enqueue_scripts', array( $this, 'theme_js' ) );
+
+			// Output JS for retina logo
+			add_action( 'wp_head', array( $this, 'retina_logo' ) );
+
+			// Move Comment textarea form field back to bottom
+			if ( apply_filters( 'wpex_move_comment_form_fields', true ) ) {
+				add_filter( 'comment_form_fields', array( $this, 'move_comment_form_fields' ) );
+			}
+
+			// Alter tag font size
+			add_filter( 'widget_tag_cloud_args', array( $this, 'tag_font_size' ) );
+
+			// Remove default gallery styles
+			add_filter( 'use_default_gallery_style', '__return_false' );
+
+		}
+
+	}
+
+	/**
+	 * Include functions and classes
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 */
+	public function load_files() {
+
+		// Include Theme Functions
+		require_once( $this->template_dir .'/inc/core-functions.php' );
+		require_once( $this->template_dir .'/inc/conditionals.php' );
+		require_once( $this->template_dir .'/inc/customizer-config.php' );
+
+		// Admin only
+		if ( is_admin() ) {
+			require_once( $this->template_dir .'/inc/meta-pages.php' );
+			require_once( $this->template_dir .'/inc/meta-posts.php' );
+			if ( ! defined( 'WPEX_DISABLE_THEME_ABOUT_PAGE' ) ) {
+				require_once( $this->template_dir .'/inc/dashboard-feed.php' );
+			}
+			if ( ! defined( 'WPEX_DISABLE_THEME_DASHBOARD_FEEDS' ) ) {
+				require_once( $this->template_dir .'/inc/welcome.php' );
+			}
+		}
+
+		// Include Classes
+		require_once ( $this->template_dir .'/inc/classes/customizer/customizer.php' );
+
+		// WPML/Polilang config
+		require_once ( $this->template_dir .'/inc/translators-config.php' );
+
+	}
+
+	/**
+	 * Functions called during each page load, after the theme is initialized
+	 * Perform basic setup, registration, and init actions for the theme
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   http://codex.wordpress.org/Plugin_API/Action_Reference/after_setup_theme
+	 */
+	public static function setup() {
+
+		// Define content_width variable
+		if ( ! isset( $content_width ) ) {
+			$content_width = 745;
+		}
+
+		// Add editor styles
+		add_editor_style( 'css/editor-style.css' );
+		
+		// Localization support
+		load_theme_textdomain( 'pineapple', get_template_directory() .'/languages' );
+			
+		// Add theme support
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'automatic-feed-links' );
+		add_theme_support( 'custom-background' );
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'custom-header' );
+		add_theme_support( 'post-formats', array( 'video', 'audio' ) );
+
+		// Entry image size
+		$crop = get_theme_mod( 'entry_thumbnail_crop' );
+		$crop = 'false' == $crop ? false : wpex_parse_image_crop( $crop );
+		add_image_size(
+			'wpex_entry',
+			get_theme_mod( 'entry_thumbnail_width', 9999 ),
+			get_theme_mod( 'entry_thumbnail_height', 9999 ),
+			$crop
+		);
+
+		// Post image size
+		$crop = get_theme_mod( 'post_thumbnail_crop' );
+		$crop = 'false' == $crop ? false : wpex_parse_image_crop( $crop );
+		add_image_size(
+			'wpex_post',
+			get_theme_mod( 'post_thumbnail_width', 9999 ),
+			get_theme_mod( 'post_thumbnail_height', 9999 ),
+			$crop
+		);
+
+		// Related entry image size
+		$crop = get_theme_mod( 'post_related_thumbnail_crop' );
+		$crop = 'false' == $crop ? false : wpex_parse_image_crop( $crop );
+		add_image_size(
+			'wpex_related_entry',
+			get_theme_mod( 'post_related_thumbnail_width', 9999 ),
+			get_theme_mod( 'post_related_thumbnail_height', 9999 ),
+			$crop
+		);
+
+	}
+
+	/**
+	 * Load custom CSS scripts in the front end
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   https://codex.wordpress.org/Function_Reference/wp_enqueue_style
+	 */
+	public function theme_css() {
+
+		// Define css directory
+		$css_dir_uri = $this->template_dir_uri .'/css/';
+
+		// Font Awesome
+		wp_enqueue_style( 'font-awesome', $css_dir_uri .'font-awesome.min.css' );
+
+		// Montserrat font
+		wp_enqueue_style( 'google-font-source-sans-pro', '//fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,600italic,700,700italic&subset=latin,vietnamese,latin-ext' );
+
+		// Main CSS
+		wp_enqueue_style( 'style', get_stylesheet_uri() );
+
+		// Remove Contact Form 7 Styles
+		if ( function_exists( 'wpcf7_enqueue_styles') ) {
+			wp_dequeue_style( 'contact-form-7' );
+		}
+
+	}
+
+	/**
+	 * Load responsive css
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   https://codex.wordpress.org/Function_Reference/wp_enqueue_style
+	 */
+	public function responsive_css() {
+		if ( get_theme_mod( 'responsive', true ) ) {
+			wp_enqueue_style( 'wpex-responsive', $this->template_dir_uri .'/css/responsive.css' );
+		}
+	}
+
+	/**
+	 * Load custom JS scripts in the front end
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   https://codex.wordpress.org/Function_Reference/wp_enqueue_script
+	 */
+	public function theme_js() {
+
+		// Define js directory
+		$js_dir_uri = $this->template_dir_uri .'/js/';
+
+		// Comment reply
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
+
+		// Responsive vids
+		wp_enqueue_script( 'fitvids', $js_dir_uri .'jquery.fitvids.js', array( 'jquery' ), '1.1', true );
+
+		// Theme functions
+		wp_enqueue_script( 'wpex-functions', $js_dir_uri .'functions.js', array( 'jquery' ), false, true );
+
+	}
+
+	/**
+	 * Registers the theme sidebars
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   http://codex.wordpress.org/Function_Reference/register_sidebar
+	 */
+	public static function register_sidebars() {
+
+		// Sidebar
+		register_sidebar( array(
+			'name'          => esc_html__( 'Sidebar - Main', 'pineapple' ),
+			'id'            => 'sidebar',
+			'before_widget' => '<div class="wpex-sidebar-widget %2$s wpex-clr">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+		) );
+
+		// Sidebar
+		register_sidebar( array(
+			'name'          => esc_html__( 'Sidebar - Pages', 'pineapple' ),
+			'id'            => 'sidebar_pages',
+			'before_widget' => '<div class="wpex-sidebar-widget %2$s wpex-clr">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+		) );
+
+	}
+	
+	/**
+	 * Adds classes to the body_class function
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   http://codex.wordpress.org/Function_Reference/body_class
+	 */
+	public static function body_classes( $classes ) {
+
+		// Add post layout
+		$classes[] = wpex_get_post_layout();
+
+		// Return classes
+		return $classes;
+
+	}
+
+	/**
+	 * Return custom excerpt more string
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   http://codex.wordpress.org/Plugin_API/Filter_Reference/excerpt_more
+	 */
+	public static function excerpt_more( $more ) {
+		return $more;
+	}
+
+	/**
+	 * Alters the default oembed output
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   https://developer.wordpress.org/reference/hooks/embed_oembed_html/
+	 */
+	public static function embed_oembed_html( $html, $url, $attr, $post_id ) {
+		return '<div class="wpex-responsive-embed">' . $html . '</div>';
+	}
+
+	/**
+	 * Adds js for the retina logo
+	 *
+	 * @since 1.0.0
+	 */
+	public static function retina_logo() {
+		$logo_url    = esc_url( get_theme_mod( 'logo_retina' ) );
+		$logo_height = intval( get_theme_mod( 'logo_height' ) );
+		if ( $logo_url && $logo_height ) {
+			echo '<!-- Retina Logo --><script type="text/javascript">jQuery(function($){if (window.devicePixelRatio >= 2) {$("#wpex-site-logo img").attr("src", "'. esc_url( $logo_url ) .'");$("#wpex-site-logo img").css("height", "'. intval( $logo_height ) .'");}});</script>';
+		}
+	}
+
+	/**
+	 * Adds meta generator for 
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public static function theme_meta_generator() {
+		$theme = wp_get_theme();
+		echo '<meta name="generator" content="Built With The Pineapple WordPress Theme '. $theme->get( 'Version' ) .' by WPExplorer.com" />';
+		echo "\r\n";
+	}
+
+	/**
+	 * Enable ditor formats
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   http://codex.wordpress.org/TinyMCE_Custom_Styles
+	 */
+	public static function enable_editor_formats( $buttons ) {
+		array_unshift( $buttons, 'styleselect' );
+		return $buttons;
+	}
+
+	/**
+	 * Add new formats
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 * @link   http://codex.wordpress.org/TinyMCE_Custom_Styles
+	 */
+	public static function add_editor_formats( $settings ) {
+		$new_formats = array(
+			array(
+				'title'     => esc_html__( 'Highlight', 'pineapple' ),
+				'inline'    => 'span',
+				'classes'   => 'wpex-text-highlight'
+			),
+			array(
+				'title' => esc_html__( 'Buttons', 'pineapple' ),
+				'items' => array(
+					array(
+						'title'     => esc_html__( 'Default', 'pineapple' ),
+						'selector'  => 'a',
+						'classes'   => 'wpex-theme-button'
+					),
+					array(
+						'title'     => esc_html__( 'Red', 'pineapple' ),
+						'selector'  => 'a',
+						'classes'   => 'wpex-theme-button red'
+					),
+					array(
+						'title'     => esc_html__( 'Green', 'pineapple' ),
+						'selector'  => 'a',
+						'classes'   => 'wpex-theme-button green'
+					),
+					array(
+						'title'     => esc_html__( 'Blue', 'pineapple' ),
+						'selector'  => 'a',
+						'classes'   => 'wpex-theme-button blue'
+					),
+					array(
+						'title'     => esc_html__( 'Orange', 'pineapple' ),
+						'selector'  => 'a',
+						'classes'   => 'wpex-theme-button orange'
+					),
+					array(
+						'title'     => esc_html__( 'Black', 'pineapple' ),
+						'selector'  => 'a',
+						'classes'   => 'wpex-theme-button black'
+					),
+					array(
+						'title'     => esc_html__( 'White', 'pineapple' ),
+						'selector'  => 'a',
+						'classes'   => 'wpex-theme-button white'
+					),
+					array(
+						'title'     => esc_html__( 'Clean', 'pineapple' ),
+						'selector'  => 'a',
+						'classes'   => 'wpex-theme-button clean'
+					),
+				),
+			),
+			array(
+				'title' => esc_html__( 'Notices', 'pineapple' ),
+				'items' => array(
+					array(
+						'title'     => esc_html__( 'Default', 'pineapple' ),
+						'block'     => 'div',
+						'classes'   => 'wpex-notice'
+					),
+					array(
+						'title'     => esc_html__( 'Info', 'pineapple' ),
+						'block'     => 'div',
+						'classes'   => 'wpex-notice wpex-info'
+					),
+					array(
+						'title'     => esc_html__( 'Warning', 'pineapple' ),
+						'block'     => 'div',
+						'classes'   => 'wpex-notice wpex-warning'
+					),
+					array(
+						'title'     => esc_html__( 'Success', 'pineapple' ),
+						'block'     => 'div',
+						'classes'   => 'wpex-notice wpex-success'
+					),
+				),
+			),
+		);
+		$settings['style_formats'] = json_encode( $new_formats );
+		return $settings;
+	}
+
+	/**
+	 * Move Comment form field back to bottom which was altered in WP 4.4
+	 *
+	 * @since 1.0.0
+	 */
+	public static function move_comment_form_fields( $fields ) {
+		$comment_field = $fields['comment'];
+		unset( $fields['comment'] );
+		$fields['comment'] = $comment_field;
+		return $fields;
+	}
+
+
+	/**
+	 * Alter the default tag font sizes
+	 *
+	 * @since 1.0.0
+	 */
+	public static function tag_font_size( $args ) {
+		$args['smallest'] = '0.857';
+		$args['largest']  = '0.857';
+		$args['unit']     = 'em';
+		return $args;
+	}
+
+}
+$wpex_pineapple_theme_setup = new WPEX_Pineapple_Theme_Setup;
