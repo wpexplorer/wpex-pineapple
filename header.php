@@ -20,7 +20,7 @@
 
 <body <?php body_class(); ?>>
 
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wpex-mesa' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wpex-pineapple' ); ?></a>
 
 	<div class="wpex-site-wrap wpex-clr">
 
