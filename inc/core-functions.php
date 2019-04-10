@@ -51,17 +51,17 @@ function wpex_parse_obj_id( $id = '', $type = 'page' ) {
  */
 function wpex_image_crop_locations() {
 	return array(
-		' '             => esc_html__( 'Default', 'pineapple' ),
-		'false'         => esc_html__( 'False', 'pineapple' ),
-		'left-top'      => esc_html__( 'Top Left', 'pineapple' ),
-		'right-top'     => esc_html__( 'Top Right', 'pineapple' ),
-		'center-top'    => esc_html__( 'Top Center', 'pineapple' ),
-		'left-center'   => esc_html__( 'Center Left', 'pineapple' ),
-		'right-center'  => esc_html__( 'Center Right', 'pineapple' ),
-		'center-center' => esc_html__( 'Center Center', 'pineapple' ),
-		'left-bottom'   => esc_html__( 'Bottom Left', 'pineapple' ),
-		'right-bottom'  => esc_html__( 'Bottom Right', 'pineapple' ),
-		'center-bottom' => esc_html__( 'Bottom Center', 'pineapple' ),
+		' '             => esc_html__( 'Default', 'wpex-pineapple' ),
+		'false'         => esc_html__( 'False', 'wpex-pineapple' ),
+		'left-top'      => esc_html__( 'Top Left', 'wpex-pineapple' ),
+		'right-top'     => esc_html__( 'Top Right', 'wpex-pineapple' ),
+		'center-top'    => esc_html__( 'Top Center', 'wpex-pineapple' ),
+		'left-center'   => esc_html__( 'Center Left', 'wpex-pineapple' ),
+		'right-center'  => esc_html__( 'Center Right', 'wpex-pineapple' ),
+		'center-center' => esc_html__( 'Center Center', 'wpex-pineapple' ),
+		'left-bottom'   => esc_html__( 'Bottom Left', 'wpex-pineapple' ),
+		'right-bottom'  => esc_html__( 'Bottom Right', 'wpex-pineapple' ),
+		'center-bottom' => esc_html__( 'Bottom Center', 'wpex-pineapple' ),
 	);
 }
 
@@ -420,7 +420,7 @@ if ( ! function_exists( 'wpex_comment' ) ) {
 			case 'trackback' :
 				// Display trackbacks differently than normal comments. ?>
 				<li id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
-				<p><strong><?php esc_html_e( 'Pingback:', 'pineapple' ); ?></strong> <?php comment_author_link(); ?></p>
+				<p><strong><?php esc_html_e( 'Pingback:', 'wpex-pineapple' ); ?></strong> <?php comment_author_link(); ?></p>
 			<?php
 			break;
 			default :
@@ -441,13 +441,13 @@ if ( ! function_exists( 'wpex_comment' ) ) {
 									printf( '<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
 										esc_url( get_comment_link( $comment->comment_ID ) ),
 										get_comment_time( 'c' ),
-										sprintf( _x( '%1$s', '1: date', 'pineapple' ), get_comment_date() )
+										sprintf( _x( '%1$s', '1: date', 'wpex-pineapple' ), get_comment_date() )
 									); ?>
 								</span><!-- .comment-date -->
 							</header><!-- .comment-meta -->
 							<?php if ( '0' == $comment->comment_approved ) : ?>
 								<p class="comment-awaiting-moderation">
-									<?php esc_html_e( 'Your comment is awaiting moderation.', 'pineapple' ); ?>
+									<?php esc_html_e( 'Your comment is awaiting moderation.', 'wpex-pineapple' ); ?>
 								</p><!-- .comment-awaiting-moderation -->
 							<?php endif; ?>
 							<div class="comment-content wpex-entry wpex-clr">
@@ -457,13 +457,13 @@ if ( ! function_exists( 'wpex_comment' ) ) {
 								<?php
 								// Cancel comment link
 								comment_reply_link( array_merge( $args, array(
-									'reply_text'    => esc_html__( 'Reply', 'pineapple' ) . '',
+									'reply_text'    => esc_html__( 'Reply', 'wpex-pineapple' ) . '',
 									'depth'         => $depth,
 									'max_depth'     => $args['max_depth']
 								) ) ); ?>
 								<?php
 								// Edit comment link
-								edit_comment_link( esc_html__( 'Edit', 'pineapple' ), '<div class="edit-comment">', '</div>' ); ?>
+								edit_comment_link( esc_html__( 'Edit', 'wpex-pineapple' ), '<div class="edit-comment">', '</div>' ); ?>
 							</footer>
 						</div><!-- .comment-details -->
 					</div><!-- #comment-## -->
@@ -503,7 +503,7 @@ function wpex_excerpt( $length = 45, $readmore = false ) {
 	else {
 
 		// Redmore text
-		$readmore_text = get_theme_mod( 'entry_readmore_text', esc_html__( 'read more', 'pineapple' ) );
+		$readmore_text = get_theme_mod( 'entry_readmore_text', esc_html__( 'read more', 'wpex-pineapple' ) );
 
 		// Readmore link
 		$readmore_link = '<a href="'. get_permalink( $post->ID ) .'" title="'. $readmore_text .'">'. $readmore_text .'<span class="wpex-readmore-rarr">&rarr;</span></a>';
@@ -647,8 +647,6 @@ function wpex_author_has_social( $user_id = NULL ) {
 		return true;
 	} elseif ( get_the_author_meta( 'wpex_facebook', $user_id ) ) {
 		return true;
-	} elseif ( get_the_author_meta( 'wpex_googleplus', $user_id ) ) {
-		return true;
 	} elseif ( get_the_author_meta( 'wpex_linkedin', $user_id ) ) {
 		return true;
 	} elseif ( get_the_author_meta( 'wpex_instagram', $user_id ) ) {
@@ -674,10 +672,6 @@ function wpex_header_social_options_array() {
 		'facebook' => array(
 			'label'      => 'Facebook',
 			'icon_class' => 'fa fa-facebook',
-		),
-		'googleplus' => array(
-			'label'      => 'Google Plus',
-			'icon_class' => 'fa fa-google-plus',
 		),
 		'pinterest' => array(
 			'label'      => 'Pinterest',
@@ -741,7 +735,7 @@ function wpex_header_social_options_array() {
 			'icon_class' => 'fa fa-rss',
 		),
 		'email' => array(
-			'label'      => esc_html__( 'Email', 'pineapple' ),
+			'label'      => esc_html__( 'Email', 'wpex-pineapple' ),
 			'icon_class' => 'fa fa-envelope',
 		),
 	);

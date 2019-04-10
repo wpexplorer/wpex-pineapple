@@ -86,7 +86,7 @@ if ( $taxonomy ) {
 			// Display comments
 			if ( 'comments' == $meta_item && comments_open() && wpex_has_comments() && ! post_password_required() ) : ?>
 
-				<li class="wpex-comments"><span class="wpex-spacer">&middot;</span><?php comments_popup_link( esc_html__( '0 Comments', 'pineapple' ), esc_html__( '1 Comment',  'pineapple' ), esc_html__( '% Comments', 'pineapple' ), 'comments-link' ); ?></li>
+				<li class="wpex-comments"><span class="wpex-spacer">&middot;</span><?php comments_popup_link( esc_html__( '0 Comments', 'wpex-pineapple' ), esc_html__( '1 Comment',  'wpex-pineapple' ), esc_html__( '% Comments', 'wpex-pineapple' ), 'comments-link' ); ?></li>
 
 			<?php endif; ?>
 

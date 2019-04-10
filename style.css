@@ -1,14 +1,15 @@
 /*------------------------------------------------------------------
 
- Theme Name: Pineapple
- Version: 1.0.0
+ Theme Name: WPEX Pineapple
+ Version: 1.1
  Description: Pineapple WordPress blogging Theme with WooCommerce support
  Author: WPExplorer
- Author URI: http://www.wpexplorer.com
- Theme URI: http://www.wpexplorer.com/
+ Author URI: https://www.wpexplorer.com
+ Theme URI: https://www.wpexplorer.com/pineapple-free-wordpress-theme/
  License: Custom license
  License URI: http://themeforest.net/licenses/terms/regular
- Tags: responsive-layout, custom-background, threaded-comments, custom-menu, featured-images, full-width-template, theme-options, translation-ready
+ Tags: custom-background, threaded-comments, custom-menu, featured-images, full-width-template, theme-options, translation-ready
+ Text Domain: wpex-pineapple
 
 /*------------------------------------------------------------------
 [# Accents]
@@ -19,7 +20,7 @@ Highlight: #0187D2
 /*------------------------------------------------------------------
 [# Reset]
 -------------------------------------------------------------------*/
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;font:inherit;vertical-align:baseline;font-family:inherit;font-size:100%;font-style:inherit;font-weight:inherit;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}html{font-size:62.5%;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}body{background:#fff;line-height:1;}article,aside,details,figcaption,figure,footer,header,main,nav,section{display:block}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0;}caption,th,td{font-weight:normal;text-align:left;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}blockquote,q{quotes:none}a:focus{outline:0}a:hover,a:active{outline:0}a img{border:0}img{max-width:100%;height:auto;}select{max-width:100%}input,select,textarea,button{font-family:inherit}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;font:inherit;vertical-align:baseline;font-family:inherit;font-style:inherit;font-weight:inherit;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}html{font-size:62.5%;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}body{background:#fff;line-height:1;}article,aside,details,figcaption,figure,footer,header,main,nav,section{display:block}ol,ul{list-style:none}table{border-collapse:collapse;border-spacing:0;}caption,th,td{font-weight:normal;text-align:left;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}blockquote,q{quotes:none}a:hover,a:active{outline:0}a img{border:0}img{max-width:100%;height:auto;}select{max-width:100%}
 
 /*------------------------------------------------------------------
 [# Grid]
@@ -66,7 +67,7 @@ body.left-sidebar .wpex-sidebar { float: left }
 
 /* Text meant only for screen readers. */
 .screen-reader-text { clip: rect(1px, 1px, 1px, 1px); position: absolute !important; height: 1px; width: 1px; overflow: hidden; }
-.screen-reader-text:focus { background-color: #f1f1f1; border-radius: 3px; box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6); clip: auto !important; color: #21759b; display: block; font-size: 14px; font-size: 0.875rem; font-weight: bold; height: auto; left: 5px; line-height: normal; padding: 15px 23px 14px; text-decoration: none; top: 5px; width: auto; z-index: 100000; 
+.screen-reader-text:focus { background-color: #f1f1f1; border-radius: 3px; box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6); clip: auto !important; color: #21759b; display: block; font-size: 14px; font-weight: bold; height: auto; left: 5px; line-height: normal; padding: 15px 23px 14px; text-decoration: none; top: 5px; width: auto; z-index: 100000; 
 /* Above WP toolbar. */ }
 
 /*clear floats*/
@@ -156,17 +157,16 @@ iframe, embed, frame { max-width: 100%; }
 .wpex-border-button:hover { background: #000; border-color: transparent; color: #fff; }
 
 /*lists */
-.wpex-entry ul,
-.wpex-entry ol { margin: 0 auto 40px; text-align: left; margin-left: 60px; }
-.wpex-entry ul { list-style: disc }
-.wpex-entry ol { list-style: decimal }
+ul, ol { margin: 0 auto 30px; margin-left: 1em; }
+ul ul, ol ol, ol ul, ul ol { margin-bottom: 0; }
+ul { list-style: disc }
+ol { list-style: decimal }
+.wpex-post-content ul,
+.wpex-post-content ol { text-align: left; }
 
 /*------------------------------------------------------------------
 [# Forms, Inputs & Buttons]
 -------------------------------------------------------------------*/
-
-/*reset focus outline*/
-*:focus { outline: 0 }
 
 /*inputs*/
 input[type="text"],
@@ -183,7 +183,7 @@ input[type="password"]:focus,
 input[type="email"]:focus,
 input[type="url"]:focus,
 input[type="tel"]:focus,
-textarea:focus { outline: none !important; }
+textarea:focus { outline: none !important; border-color: #0187D2; }
 
 /*placeholder text*/
 ::-webkit-input-placeholder { color: #585858; }
@@ -230,7 +230,7 @@ h3 { font-size: 1.286em }
 h4 { font-size: 1.143em }
 h5 { font-size: 1.000em }
 h6 { font-size: 0.857em }
-p { margin: 0 0 40px }
+p { margin: 0 0 30px }
 h1 a, h2 a, h3 a, h4 a { color: inherit; text-decoration: none; }
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover { color: inherit; text-decoration: none; color: inherit; }
 p.lead { color: #777; font-size: 1.500em; }
@@ -239,7 +239,6 @@ strong { font-weight: bold; }
 .wpex-entry strong { color: #333; }
 small { font-size: 80% }
 hr { border: solid #eee; border-width: 3px 0 0; clear: both; height: 0; margin: 40px 0; }
-a { outline: 0 }
 
 /*archives header*/
 .wpex-archive-header { position: relative; margin-bottom: 60px; padding-top: 30px; padding-bottom: 30px; border-bottom: 3px solid #eee; border-top: 3px solid #eee; text-align: center; }
@@ -310,6 +309,8 @@ a.wpex-loop-entry-media-link:hover img { opacity: 0.9; -moz-opacity: 0.9; -webki
 -------------------------------------------------------------------*/
 .wpex-loop-entry-meta,
 .wpex-post-meta { font-size: 0.923em; margin-bottom: 20px; color: #777; text-align: center; }
+.wpex-loop-entry-meta,
+.wpex-post-meta ul { text-align: inherit; margin: 0; }
 .wpex-post-meta { position: relative; }
 .wpex-loop-entry-meta a,
 .wpex-post-meta a,
@@ -365,7 +366,7 @@ a.wpex-loop-entry-media-link:hover img { opacity: 0.9; -moz-opacity: 0.9; -webki
 [# Pagination]
 -------------------------------------------------------------------*/
 .wpex-page-numbers { padding-top: 30px; list-style: none; margin: 0; text-align: center; font-size: 16px; }
-.wpex-page-numbers li { display: inline-block; text-align: center; margin-right: 2px; background: #fff; }
+.wpex-page-numbers li { display: inline-block; margin-right: 2px; background: #fff; }
 .wpex-page-numbers:after { clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden; }
 .wpex-page-numbers a,
 .wpex-page-numbers span { color: #666; cursor: pointer; display: block; float: left; height: 30px; line-height: 30px; text-align: center; width: 30px; text-align: center; text-decoration: none; transition: 0.15s all ease-in-out; -moz-transition: 0.15s all ease-in-out; -webkit-transition: 0.15s all ease-in-out; border: 1px solid #ddd; }
@@ -380,13 +381,9 @@ a.wpex-loop-entry-media-link:hover img { opacity: 0.9; -moz-opacity: 0.9; -webki
 
 /*nav links*/
 .wpex-page-links { margin-bottom: 30px }
-.wpex-page-links span,
-.wpex-page-links a { display: block; float: left; margin-right: 5px; border: 1px solid #ddd; padding: 0.4em 0.6em; line-height: 1; transition: all 0.15s; }
-.wpex-page-links span { background-color: #ee4f4f; color: #fff; border-color: transparent; }
-.wpex-page-links a span { padding: 0; border: 0; margin: 0; background: none; color: #000; }
-.wpex-page-links a:hover,
-.wpex-page-links a:hover span,
-.wpex-page-links span:hover { background: #ee4f4f; color: #fff; border-color: transparent; }
+.wpex-page-links .post-page-numbers { display: block; float: left; margin-right: 5px; border: 1px solid #ddd; padding: 0.4em 0.6em; line-height: 1; transition: all 0.15s; text-decoration: none; }
+.wpex-page-links a.post-page-numbers:hover,
+.wpex-page-links .post-page-numbers.current { background-color: #306dcb; color: #fff; border-color: transparent; }
 
 /*------------------------------------------------------------------
 [# Entry:None]
@@ -457,7 +454,7 @@ textarea.wpcf7-not-valid { border-color: #FF4847 }
 #commentform { font-size: 0.875em; }
 #commentform label { display: block; margin-bottom: 5px; }
 #commentform textarea { width: 100% }
-#commentform p { margin: 0 0 24px }
+#commentform p { margin: 0 0 15px }
 #comments .comment-notes { margin-bottom: 20px; }
 #comments .form-allowed-tags { font-size: 0.857em }
 #comments .form-allowed-tags { font-style: italic; color: #777; }

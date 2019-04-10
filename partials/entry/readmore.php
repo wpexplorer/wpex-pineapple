@@ -15,5 +15,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 } ?>
 
 <div class="wpex-entry-readmore wpex-clr">
-	<a href="<?php the_permalink(); ?>" title="<?php wpex_esc_title(); ?>"><?php esc_html_e( 'Continue reading', 'pineapple' ); ?> &rarr;</a>
+	<a href="<?php the_permalink(); ?>"><?php esc_html_e( 'Continue reading', 'wpex-pineapple' ); ?> &rarr;</a>
 </div>

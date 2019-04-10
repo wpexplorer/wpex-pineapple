@@ -52,7 +52,7 @@ class WPEX_Page_Meta_Settings {
 		if ( 'page' == $post_type ) {
 			add_meta_box(
 				'wpex_page_settings_metabox',
-				esc_html__( 'Page Settings', 'pineapple' ),
+				esc_html__( 'Page Settings', 'wpex-pineapple' ),
 				array( $this, 'render_meta_box_content' ),
 				'page',
 				'side',
@@ -79,15 +79,15 @@ class WPEX_Page_Meta_Settings {
 
 			// Layout options
 			$post_layouts = array(
-				''               => esc_html__( 'Default', 'pineapple' ),
-				'right-sidebar'  => esc_html__( 'Right Sidebar', 'pineapple' ),
-				'left-sidebar'   => esc_html__( 'Left Sidebar', 'pineapple' ),
-				'full-width'     => esc_html__( 'No Sidebar', 'pineapple' ),
+				''               => esc_html__( 'Default', 'wpex-pineapple' ),
+				'right-sidebar'  => esc_html__( 'Right Sidebar', 'wpex-pineapple' ),
+				'left-sidebar'   => esc_html__( 'Left Sidebar', 'wpex-pineapple' ),
+				'full-width'     => esc_html__( 'No Sidebar', 'wpex-pineapple' ),
 			);
 
 			// Display the form, using the current value.
 			echo '<tr>';
-				echo '<th><p><label for="wpex_post_layout">'. esc_html__( 'Layout', 'pineapple' ) .'</label></p></th>';
+				echo '<th><p><label for="wpex_post_layout">'. esc_html__( 'Layout', 'wpex-pineapple' ) .'</label></p></th>';
 				echo '<td><select type="text" id="wpex_post_layout" name="wpex_post_layout">';
 					foreach( $post_layouts as $key => $val ) {
 						echo '<option value="'. esc_attr( $key ) .'" '. selected( $value, $key ) .'>'. esc_attr( $val ) .'</option>';

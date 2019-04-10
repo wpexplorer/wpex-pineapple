@@ -25,7 +25,7 @@ if ( is_front_page() ) {
 
 	<?php if ( post_password_required() ) : ?>
 
-		<?php esc_html_e( 'This post is password protected you will need a password to access the article.', 'pineapple' ); ?>
+		<?php esc_html_e( 'This post is password protected you will need a password to access the article.', 'wpex-pineapple' ); ?>
 
 	<?php elseif ( 'content' != $display && 'quote' != get_post_format() && wpex_has_custom_excerpt() ) : ?>
 

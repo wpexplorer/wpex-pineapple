@@ -10,6 +10,6 @@
  */ ?>
 
 <form method="get" class="wpex-site-searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-	<input type="search" class="field" name="s" value="<?php esc_html_e( 'Search', 'pineapple' ); ?>&hellip;" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-	<button type="submit"><span class="fa fa-search"></span></button>
+	<input type="search" class="field" name="s" placeholder="<?php esc_html_e( 'Search', 'wpex-pineapple' ); ?>&hellip;" />
+	<button type="submit"><span class="fa fa-search" aria-hidden="true"></span></button>
 </form>

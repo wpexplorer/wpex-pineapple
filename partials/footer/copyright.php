@@ -15,12 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Get copyright data
-$copy = apply_filters( 'wpex_footer_copyright', '<a href="http://www.wpexplorer.com/pineapple-free-wordpress-theme/" target="_blank" title="Pineapple WordPress Theme">Pineapple</a> Theme by <a href="http://themeforest.net/user/wpexplorer?ref=WPExplorer" title="WPExplorer Themes" target="_blank">WPExplorer</a> Powered by <a href="https://wordpress.org/" title="WordPress" target="_blank">WordPress</a>' );
-$copy = wpex_sanitize( $copy, 'html' ); // Sanitize output, see inc/core-functions.php
+$copy = apply_filters( 'wpex_footer_copyright', get_theme_mod( 'footer_copyright', '<a href="https://www.wpexplorer.com/pineapple-free-wordpress-theme/" target="_blank" title="Pineapple WordPress Theme">Pineapple</a> Theme by <a href="https://www.wpexplorer.com/" target="_blank">WPExplorer</a> Powered by <a href="https://wordpress.org/" title="WordPress" target="_blank">WordPress</a>' ) );
 
 // Display copyright
 if ( $copy ) : ?>
-
 	<div class="footer-copyright wpex-clr">
 		<?php echo do_shortcode( wpex_sanitize( $copy, 'html' ) ); ?>
 	</div><!-- .footer-copyright -->

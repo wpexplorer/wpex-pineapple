@@ -24,21 +24,21 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 		/* - General Panel
 		/*-----------------------------------------------------------------------------------*/
 		$panels['general'] = array(
-			'title' => esc_html__( 'General Theme Settings', 'pineapple' ),
+			'title' => esc_html__( 'General Theme Settings', 'wpex-pineapple' ),
 			'sections' => array()
 		);
 
 		// Responsive
 		$panels['general']['sections']['responsive'] = array(
 			'id' => 'wpex_responsive',
-			'title' => esc_html__( 'Responsive', 'pineapple' ),
+			'title' => esc_html__( 'Responsive', 'wpex-pineapple' ),
 			'settings' => array(
 				array(
 					'id' => 'responsive',
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Enable', 'pineapple' ),
+						'label' => esc_html__( 'Enable', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -48,14 +48,14 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 		// Header Section
 		$panels['general']['sections']['general'] = array(
 			'id' => 'wpex_general',
-			'title' => esc_html__( 'Header', 'pineapple' ),
+			'title' => esc_html__( 'Header', 'wpex-pineapple' ),
 			'settings' => array(
 				array(
 					'id' => 'site_description',
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Display description?', 'pineapple' ),
+						'label' => esc_html__( 'Display description?', 'wpex-pineapple' ),
 						'type' => 'checkbox'
 					),
 				),
@@ -63,7 +63,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'id' => 'logo',
 					'sanitize_callback' => 'esc_url',
 					'control' => array(
-						'label' => esc_html__( 'Custom Logo', 'pineapple' ),
+						'label' => esc_html__( 'Custom Logo', 'wpex-pineapple' ),
 						'type' => 'upload',
 					),
 				),
@@ -71,7 +71,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'id' => 'logo_retina',
 					'sanitize_callback' => 'esc_url',
 					'control' => array(
-						'label' => esc_html__( 'Custom Retina Logo', 'pineapple' ),
+						'label' => esc_html__( 'Custom Retina Logo', 'wpex-pineapple' ),
 						'type' => 'upload',
 					),
 				),
@@ -79,8 +79,8 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'id' => 'logo_retina_height',
 					'sanitize_callback' => 'intval',
 					'control' => array(
-						'label' => esc_html__( 'Standard Logo Height', 'pineapple' ),
-						'desc' => esc_html__( 'Enter the standard height for your logo. Used to set your retina logo to the correct dimensions', 'pineapple' ),
+						'label' => esc_html__( 'Standard Logo Height', 'wpex-pineapple' ),
+						'desc' => esc_html__( 'Enter the standard height for your logo. Used to set your retina logo to the correct dimensions', 'wpex-pineapple' ),
 					),
 				),
 			),
@@ -88,20 +88,20 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 
 		// Topbar Social
 		$social_options = wpex_header_social_options_array();
-		
+
 		if ( $social_options ) {
 
 			$panels['general']['sections']['socialbar'] = array(
 				'id' => 'wpex_social_header',
-				'title' => esc_html__( 'Social', 'pineapple' ),
-				'desc' => esc_html__( 'Enter the full URL to your social media profile.', 'pineapple' ),
+				'title' => esc_html__( 'Social', 'wpex-pineapple' ),
+				'desc' => esc_html__( 'Enter the full URL to your social media profile.', 'wpex-pineapple' ),
 				'settings' => array(
 					array(
 						'id' => 'header_social',
 						'default' => true,
 						'sanitize_callback' => 'esc_html',
 						'control' => array(
-							'label' => esc_html__( 'Enable Social', 'pineapple' ),
+							'label' => esc_html__( 'Enable Social', 'wpex-pineapple' ),
 							'type' => 'checkbox',
 						),
 					),
@@ -112,7 +112,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 				'id' => 'socialbar_target_blank',
 				'transport' => 'postMessage',
 				'control' => array(
-					'label' => esc_html__( 'Open Social Links In New Tab?', 'pineapple' ),
+					'label' => esc_html__( 'Open Social Links In New Tab?', 'wpex-pineapple' ),
 					'type' => 'checkbox',
 				),
 			);
@@ -123,7 +123,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'id' => 'socialbar_'. $key,
 					'sanitize_callback' => 'esc_url',
 					'control' => array(
-						'label' => $val['label'] .' - '. esc_html__( 'URL', 'pineapple' ),
+						'label' => $val['label'] .' - '. esc_html__( 'URL', 'wpex-pineapple' ),
 					),
 				);
 
@@ -135,18 +135,18 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 		// Entries
 		$panels['general']['sections']['entries'] = array(
 			'id' => 'wpex_entries',
-			'title' => esc_html__( 'Entries', 'pineapple' ),
+			'title' => esc_html__( 'Entries', 'wpex-pineapple' ),
 			'settings' => array(
 				array(
 					'id' => 'entry_content_display',
 					'default' => 'excerpt',
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Entry Displays?', 'pineapple' ),
+						'label' => esc_html__( 'Entry Displays?', 'wpex-pineapple' ),
 						'type' => 'select',
 						'choices' => array(
-							'excerpt' => esc_html__( 'Custom Excerpt', 'pineapple' ),
-							'content' => esc_html__( 'Full Content', 'pineapple' ),
+							'excerpt' => esc_html__( 'Custom Excerpt', 'wpex-pineapple' ),
+							'content' => esc_html__( 'Full Content', 'wpex-pineapple' ),
 						),
 					),
 				),
@@ -155,10 +155,9 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => 30,
 					'sanitize_callback' => 'absint',
 					'control' => array(
-						'label' => esc_html__( 'Entry Excerpt Length', 'pineapple' ),
+						'label' => esc_html__( 'Entry Excerpt Length', 'wpex-pineapple' ),
 						'type' => 'number',
-						'desc' => esc_html__( 'How many words to display per excerpt', 'pineapple' ),
-						'active_callback' => 'wpex_has_custom_excerpt'
+						'desc' => esc_html__( 'How many words to display per excerpt', 'wpex-pineapple' ),
 					),
 				),
 				array(
@@ -166,7 +165,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Entry Thumbnail', 'pineapple' ),
+						'label' => esc_html__( 'Entry Thumbnail', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -175,7 +174,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Entry Category Tag', 'pineapple' ),
+						'label' => esc_html__( 'Entry Category Tag', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -184,7 +183,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Display First Category Only', 'pineapple' ),
+						'label' => esc_html__( 'Display First Category Only', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -193,7 +192,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Entry Meta', 'pineapple' ),
+						'label' => esc_html__( 'Entry Meta', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -202,7 +201,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Entry Meta Date', 'pineapple' ),
+						'label' => esc_html__( 'Entry Meta Date', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 						'active_callback' => 'wpex_customizer_entry_has_meta'
 					),
@@ -212,7 +211,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Entry Meta Author', 'pineapple' ),
+						'label' => esc_html__( 'Entry Meta Author', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 							'active_callback' => 'wpex_customizer_entry_has_meta'
 					),
@@ -222,7 +221,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Entry Meta Comments', 'pineapple' ),
+						'label' => esc_html__( 'Entry Meta Comments', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 							'active_callback' => 'wpex_customizer_entry_has_meta'
 					),
@@ -232,7 +231,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Entry Readmore', 'pineapple' ),
+						'label' => esc_html__( 'Entry Readmore', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -242,14 +241,14 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 		// Posts
 		$panels['general']['sections']['posts'] = array(
 			'id' => 'wpex_posts',
-			'title' => esc_html__( 'Posts', 'pineapple' ),
+			'title' => esc_html__( 'Posts', 'wpex-pineapple' ),
 			'settings' => array(
 				array(
 					'id' => 'post_thumbnail',
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Thumbnail', 'pineapple' ),
+						'label' => esc_html__( 'Post Thumbnail', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -258,7 +257,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Category Tag', 'pineapple' ),
+						'label' => esc_html__( 'Post Category Tag', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -267,7 +266,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Display First Category Only', 'pineapple' ),
+						'label' => esc_html__( 'Display First Category Only', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -276,7 +275,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Meta', 'pineapple' ),
+						'label' => esc_html__( 'Post Meta', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -285,7 +284,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Meta Date', 'pineapple' ),
+						'label' => esc_html__( 'Post Meta Date', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 						'active_callback' => 'wpex_customizer_post_has_meta'
 					),
@@ -295,7 +294,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Meta Author', 'pineapple' ),
+						'label' => esc_html__( 'Post Meta Author', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 						'active_callback' => 'wpex_customizer_post_has_meta'
 					),
@@ -305,7 +304,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Meta Comments', 'pineapple' ),
+						'label' => esc_html__( 'Post Meta Comments', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 							'active_callback' => 'wpex_customizer_entry_has_meta'
 					),
@@ -315,7 +314,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Tags', 'pineapple' ),
+						'label' => esc_html__( 'Post Tags', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -324,7 +323,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Next/Previous', 'pineapple' ),
+						'label' => esc_html__( 'Post Next/Previous', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -333,7 +332,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => false,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Next/Previous From Same Category', 'pineapple' ),
+						'label' => esc_html__( 'Post Next/Previous From Same Category', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 						'active_callback' => 'wpex_customizer_post_navigation_in_same_term',
 					),
@@ -343,7 +342,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => true,
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Related', 'pineapple' ),
+						'label' => esc_html__( 'Post Related', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -352,11 +351,11 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => 'related_category',
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Related: Displays?', 'pineapple' ),
+						'label' => esc_html__( 'Post Related: Displays?', 'wpex-pineapple' ),
 						'type' => 'select',
 						'choices' => array(
-							'related_category' => esc_html__( 'Recent From Same Category', 'pineapple' ),
-							'random' => esc_html__( 'Random Posts', 'pineapple' ),
+							'related_category' => esc_html__( 'Recent From Same Category', 'wpex-pineapple' ),
+							'random' => esc_html__( 'Random Posts', 'wpex-pineapple' ),
 						),
 						'active_callback' => 'wpex_customizer_has_related_posts',
 					),
@@ -365,7 +364,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'id' => 'post_related_heading',
 					'sanitize_callback' => 'esc_html',
 					'control' => array(
-						'label' => esc_html__( 'Post Related: Heading', 'pineapple' ),
+						'label' => esc_html__( 'Post Related: Heading', 'wpex-pineapple' ),
 						'type' => 'text',
 						'active_callback' => 'wpex_customizer_has_related_posts',
 					),
@@ -375,7 +374,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'absint',
 					'default' => '3',
 					'control' => array(
-						'label' => esc_html__( 'Post Related: Columns', 'pineapple' ),
+						'label' => esc_html__( 'Post Related: Columns', 'wpex-pineapple' ),
 						'type' => 'select',
 						'choices' => array(
 							'1' => '1',
@@ -391,7 +390,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'default' => 3,
 					'sanitize_callback' => 'absint',
 					'control' => array(
-						'label' => esc_html__( 'Post Related: Count', 'pineapple' ),
+						'label' => esc_html__( 'Post Related: Count', 'wpex-pineapple' ),
 						'type' => 'number',
 						'active_callback' => 'wpex_customizer_has_related_posts',
 					),
@@ -402,14 +401,14 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 		// Discussion
 		$panels['general']['sections']['discussion'] = array(
 			'id' => 'wpex_site_discussion',
-			'title' => esc_html__( 'Discussion', 'pineapple' ),
+			'title' => esc_html__( 'Discussion', 'wpex-pineapple' ),
 			'settings' => array(
 				array(
 					'id' => 'comments_on_pages',
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Comments For Pages', 'pineapple' ),
+						'label' => esc_html__( 'Comments For Pages', 'wpex-pineapple' ),
 						'type' => 'checkbox',
 					),
 				),
@@ -418,8 +417,25 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 					'sanitize_callback' => 'esc_html',
 					'default' => true,
 					'control' => array(
-						'label' => esc_html__( 'Comments For Posts', 'pineapple' ),
+						'label' => esc_html__( 'Comments For Posts', 'wpex-pineapple' ),
 						'type' => 'checkbox',
+					),
+				),
+			)
+		);
+
+		// Footer
+		$panels['general']['sections']['footer'] = array(
+			'id' => 'wpex_site_footer',
+			'title' => esc_html__( 'Footer', 'wpex-pineapple' ),
+			'settings' => array(
+				array(
+					'id' => 'footer_copyright',
+					'sanitize_callback' => 'wp_kses_post',
+					'default' => '<a href="https://www.wpexplorer.com/pineapple-free-wordpress-theme/" target="_blank" title="Pineapple WordPress Theme">Pineapple</a> Theme by <a href="https://www.wpexplorer.com/" target="_blank">WPExplorer</a> Powered by <a href="https://wordpress.org/" title="WordPress" target="_blank">WordPress</a>',
+					'control' => array(
+						'label' => esc_html__( 'Copyright', 'wpex-pineapple' ),
+						'type' => 'textarea',
 					),
 				),
 			)
@@ -429,14 +445,14 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 		/* - Image Sizes
 		/*-----------------------------------------------------------------------------------*/
 		$panels['image_sizes'] = array(
-			'title' => esc_html__( 'Image Sizes', 'pineapple' ),
+			'title' => esc_html__( 'Image Sizes', 'wpex-pineapple' ),
 			'sections' => array(
 
 				// Grid Entries
 				array(
 					'id' => 'wpex_entry_thumbnail_sizes',
-					'title' => esc_html__( 'Entries', 'pineapple' ),
-					'desc' => esc_html__( 'If you alter any image sizes you will have to regenerate your thumbnails.', 'pineapple' ),
+					'title' => esc_html__( 'Entries', 'wpex-pineapple' ),
+					'desc' => esc_html__( 'If you alter any image sizes you will have to regenerate your thumbnails.', 'wpex-pineapple' ),
 					'settings' => array(
 						array(
 							'id' => 'entry_thumbnail_width',
@@ -444,7 +460,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 							'sanitize_callback' => 'absint',
 							'transport' => 'postMessage',
 							'control' => array(
-								'label' => esc_html__( 'Image Width', 'pineapple' ),
+								'label' => esc_html__( 'Image Width', 'wpex-pineapple' ),
 								'type' => 'text',
 							),
 						),
@@ -454,7 +470,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 							'sanitize_callback' => 'absint',
 							'transport' => 'postMessage',
 							'control' => array(
-								'label' => esc_html__( 'Image Height', 'pineapple' ),
+								'label' => esc_html__( 'Image Height', 'wpex-pineapple' ),
 								'type' => 'text',
 							),
 						),
@@ -464,7 +480,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 							'sanitize_callback' => 'esc_html',
 							'transport' => 'postMessage',
 							'control' => array(
-								'label' => esc_html__( 'Crop', 'pineapple' ),
+								'label' => esc_html__( 'Crop', 'wpex-pineapple' ),
 								'type' => 'select',
 								'choices' => $crop_locations,
 							),
@@ -475,8 +491,8 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 				// Posts
 				array(
 					'id' => 'wpex_post_thumbnail_sizes',
-					'title' => esc_html__( 'Posts', 'pineapple' ),
-					'desc' => esc_html__( 'If you alter any image sizes you will have to regenerate your thumbnails.', 'pineapple' ),
+					'title' => esc_html__( 'Posts', 'wpex-pineapple' ),
+					'desc' => esc_html__( 'If you alter any image sizes you will have to regenerate your thumbnails.', 'wpex-pineapple' ),
 					'settings' => array(
 						array(
 							'id' => 'post_thumbnail_width',
@@ -484,7 +500,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 							'sanitize_callback' => 'absint',
 							'transport' => 'postMessage',
 							'control' => array(
-								'label' => esc_html__( 'Image Width', 'pineapple' ),
+								'label' => esc_html__( 'Image Width', 'wpex-pineapple' ),
 								'type' => 'text',
 							),
 						),
@@ -494,7 +510,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 							'sanitize_callback' => 'absint',
 							'transport' => 'postMessage',
 							'control' => array(
-								'label' => esc_html__( 'Image Height', 'pineapple' ),
+								'label' => esc_html__( 'Image Height', 'wpex-pineapple' ),
 								'type' => 'text',
 							),
 						),
@@ -504,7 +520,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 							'sanitize_callback' => 'esc_html',
 							'transport' => 'postMessage',
 							'control' => array(
-								'label' => esc_html__( 'Crop', 'pineapple' ),
+								'label' => esc_html__( 'Crop', 'wpex-pineapple' ),
 								'type' => 'select',
 								'choices' => $crop_locations,
 							),
@@ -515,8 +531,8 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 				// Related Posts
 				array(
 					'id' => 'wpex_posts_related_thumbnail_sizes',
-					'title' => esc_html__( 'Related Posts', 'pineapple' ),
-					'desc' => esc_html__( 'If you alter any image sizes you will have to regenerate your thumbnails.', 'pineapple' ),
+					'title' => esc_html__( 'Related Posts', 'wpex-pineapple' ),
+					'desc' => esc_html__( 'If you alter any image sizes you will have to regenerate your thumbnails.', 'wpex-pineapple' ),
 					'settings' => array(
 						array(
 							'id' => 'post_related_thumbnail_width',
@@ -524,7 +540,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 							'sanitize_callback' => 'absint',
 							'transport' => 'postMessage',
 							'control' => array(
-								'label' => esc_html__( 'Image Width', 'pineapple' ),
+								'label' => esc_html__( 'Image Width', 'wpex-pineapple' ),
 								'type' => 'text',
 							),
 						),
@@ -534,7 +550,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 							'sanitize_callback' => 'absint',
 							'transport' => 'postMessage',
 							'control' => array(
-								'label' => esc_html__( 'Image Height', 'pineapple' ),
+								'label' => esc_html__( 'Image Height', 'wpex-pineapple' ),
 								'type' => 'text',
 							),
 						),
@@ -544,7 +560,7 @@ if ( ! function_exists( 'wpex_customizer_config' ) ) {
 							'sanitize_callback' => 'esc_html',
 							'transport' => 'postMessage',
 							'control' => array(
-								'label' => esc_html__( 'Crop', 'pineapple' ),
+								'label' => esc_html__( 'Crop', 'wpex-pineapple' ),
 								'type' => 'select',
 								'choices' => $crop_locations,
 							),

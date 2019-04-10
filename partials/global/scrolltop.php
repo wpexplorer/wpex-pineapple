@@ -14,4 +14,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } ?>
 
-<a href="#" title="<?php esc_html_e( 'Top', 'pineapple' ); ?>" class="wpex-site-scroll-top"><span class="fa fa-angle-up"></span></a>
+<a href="#" class="wpex-site-scroll-top"><span class="fa fa-angle-up" aria-hidden="true"></span><span class="screen-reader-text"><?php esc_html_e( 'Back to top', 'wpex-pineapple' ); ?></span></a>

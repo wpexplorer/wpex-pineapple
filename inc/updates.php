@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Theme Data
 $api_url     = 'https://wpexplorer-updates.com/api/v1';
-$theme_slug  = 'pineapple';
+$theme_slug  = 'wpex-pineapple';
 $license_key = null; // no API for CM yet...
 
 // Updater class

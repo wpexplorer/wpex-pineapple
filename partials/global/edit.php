@@ -21,9 +21,9 @@ if ( ( function_exists( 'is_cart' ) && is_cart() ) || ( function_exists( 'is_che
 
 // Define text
 if ( is_page() ) {
-	$text = esc_html__( 'Edit This Page', 'pineapple' );
+	$text = esc_html__( 'Edit This Page', 'wpex-pineapple' );
 } else {
-	$text = esc_html__( 'Edit This Article', 'pineapple' );
+	$text = esc_html__( 'Edit This Article', 'wpex-pineapple' );
 }
 $text = apply_filters( 'wpex_post_edit_text', $text );
 

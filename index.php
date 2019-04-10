@@ -30,7 +30,7 @@ get_header(); ?>
 		// Check if posts exist
 		if ( have_posts() ) : ?>
 
-			<div class="wpex-entries wpex-clr">   
+			<div class="wpex-entries wpex-clr">
 
 				<?php
 				// Get query

@@ -29,7 +29,7 @@ if ( ! wpex_has_comments() ) {
 	// Display comments if we have some
 	if ( have_comments() ) : ?>
 
-		<h2 class="wpex-comments-title wpex-heading"><span><?php comments_number( __( '0 Comments', 'pineapple' ), __( '1 Comment', 'pineapple' ), '% '. __( 'Comments', 'pineapple' ) ); ?></span></h2>
+		<h2 class="wpex-comments-title wpex-heading"><span><?php comments_number( __( '0 Comments', 'wpex-pineapple' ), __( '1 Comment', 'wpex-pineapple' ), '% '. __( 'Comments', 'wpex-pineapple' ) ); ?></span></h2>
 
 		<ol class="commentlist">
 
@@ -47,14 +47,14 @@ if ( ! wpex_has_comments() ) {
 
 			<nav class="navigation comment-navigation row wpex-clr" role="navigation">
 				<h3 class="assistive-text wpex-heading">
-					<span><?php esc_html_e( 'Comment navigation', 'pineapple' ); ?></span>
+					<span><?php esc_html_e( 'Comment navigation', 'wpex-pineapple' ); ?></span>
 				</h3>
 				<div class="wpex-clr">
 					<div class="wpex-nav-previous">
-						<?php previous_comments_link( esc_html__( '&larr; Older Comments', 'pineapple' ) ); ?>
+						<?php previous_comments_link( esc_html__( '&larr; Older Comments', 'wpex-pineapple' ) ); ?>
 					</div>
 					<div class="wpex-nav-next">
-						<?php next_comments_link( esc_html__( 'Newer Comments &rarr;', 'pineapple' ) ); ?>
+						<?php next_comments_link( esc_html__( 'Newer Comments &rarr;', 'wpex-pineapple' ) ); ?>
 					</div>
 				</div><!-- .wpex-clr -->
 			</nav>
@@ -69,7 +69,7 @@ if ( ! wpex_has_comments() ) {
 
 		<div class="comments-closed-notice wpex-clr">
 
-			<?php esc_html_e( 'Comments are now closed.', 'pineapple' ); ?>
+			<?php esc_html_e( 'Comments are now closed.', 'wpex-pineapple' ); ?>
 
 		</div><!-- .comments-closed-notice -->
 

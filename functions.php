@@ -22,13 +22,12 @@
  * @since     1.0.0
  */
 
-// Theme info
-function wpex_get_theme_info() {
+function wpex_theme_info() {
 	return array(
-		'name'      => 'Pineapple',
-		'dir'       => get_template_directory_uri() .'/inc/',
-		'url'       => 'http://www.wpexplorer.com/pineapple-free-wordpress-theme/',
-		'changelog' => 'http://www.wpexplorer.com/changelogs/pineapple/',
+		'name'    => 'WPEX Pineapple',
+		'slug'    => 'wpex-pineapple',
+		'url'     => 'https://www.wpexplorer.com/pineapple-free-wordpress-theme/',
+		'support' => 'https://github.com/wpexplorer/wpex-pineapple',
 	);
 }
 
@@ -126,11 +125,11 @@ class WPEX_Pineapple_Theme_Setup {
 		if ( is_admin() ) {
 			require_once( $this->template_dir .'/inc/meta-pages.php' );
 			require_once( $this->template_dir .'/inc/meta-posts.php' );
-			if ( ! defined( 'WPEX_DISABLE_THEME_ABOUT_PAGE' ) ) {
-				require_once( $this->template_dir .'/inc/dashboard-feed.php' );
-			}
 			if ( ! defined( 'WPEX_DISABLE_THEME_DASHBOARD_FEEDS' ) ) {
-				require_once( $this->template_dir .'/inc/welcome.php' );
+				require_once get_parent_theme_file_path( '/admin/dashboard-feed.php' );
+			}
+			if ( ! defined( 'WPEX_DISABLE_THEME_ABOUT_PAGE' ) ) {
+				require_once get_parent_theme_file_path( '/admin/about.php' );
 			}
 		}
 
@@ -160,10 +159,10 @@ class WPEX_Pineapple_Theme_Setup {
 
 		// Add editor styles
 		add_editor_style( 'css/editor-style.css' );
-		
+
 		// Localization support
-		load_theme_textdomain( 'pineapple', get_template_directory() .'/languages' );
-			
+		load_theme_textdomain( 'wpex-pineapple', get_template_directory() . '/languages' );
+
 		// Add theme support
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'automatic-feed-links' );
@@ -258,7 +257,11 @@ class WPEX_Pineapple_Theme_Setup {
 	public function theme_js() {
 
 		// Define js directory
-		$js_dir_uri = $this->template_dir_uri .'/js/';
+		$js_dir_uri = $this->template_dir_uri . '/js/';
+
+		// HTML5
+		wp_enqueue_script( 'html5shiv', $js_dir_uri . 'js/html5.js', array(), false, false );
+		wp_script_add_data( 'html5shiv', 'conditional', 'lt IE 9' );
 
 		// Comment reply
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -285,7 +288,7 @@ class WPEX_Pineapple_Theme_Setup {
 
 		// Sidebar
 		register_sidebar( array(
-			'name'          => esc_html__( 'Sidebar - Main', 'pineapple' ),
+			'name'          => esc_html__( 'Sidebar - Main', 'wpex-pineapple' ),
 			'id'            => 'sidebar',
 			'before_widget' => '<div class="wpex-sidebar-widget %2$s wpex-clr">',
 			'after_widget'  => '</div>',
@@ -295,7 +298,7 @@ class WPEX_Pineapple_Theme_Setup {
 
 		// Sidebar
 		register_sidebar( array(
-			'name'          => esc_html__( 'Sidebar - Pages', 'pineapple' ),
+			'name'          => esc_html__( 'Sidebar - Pages', 'wpex-pineapple' ),
 			'id'            => 'sidebar_pages',
 			'before_widget' => '<div class="wpex-sidebar-widget %2$s wpex-clr">',
 			'after_widget'  => '</div>',
@@ -304,7 +307,7 @@ class WPEX_Pineapple_Theme_Setup {
 		) );
 
 	}
-	
+
 	/**
 	 * Adds classes to the body_class function
 	 *
@@ -361,7 +364,7 @@ class WPEX_Pineapple_Theme_Setup {
 	}
 
 	/**
-	 * Adds meta generator for 
+	 * Adds meta generator for
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -396,75 +399,75 @@ class WPEX_Pineapple_Theme_Setup {
 	public static function add_editor_formats( $settings ) {
 		$new_formats = array(
 			array(
-				'title'     => esc_html__( 'Highlight', 'pineapple' ),
+				'title'     => esc_html__( 'Highlight', 'wpex-pineapple' ),
 				'inline'    => 'span',
 				'classes'   => 'wpex-text-highlight'
 			),
 			array(
-				'title' => esc_html__( 'Buttons', 'pineapple' ),
+				'title' => esc_html__( 'Buttons', 'wpex-pineapple' ),
 				'items' => array(
 					array(
-						'title'     => esc_html__( 'Default', 'pineapple' ),
+						'title'     => esc_html__( 'Default', 'wpex-pineapple' ),
 						'selector'  => 'a',
 						'classes'   => 'wpex-theme-button'
 					),
 					array(
-						'title'     => esc_html__( 'Red', 'pineapple' ),
+						'title'     => esc_html__( 'Red', 'wpex-pineapple' ),
 						'selector'  => 'a',
 						'classes'   => 'wpex-theme-button red'
 					),
 					array(
-						'title'     => esc_html__( 'Green', 'pineapple' ),
+						'title'     => esc_html__( 'Green', 'wpex-pineapple' ),
 						'selector'  => 'a',
 						'classes'   => 'wpex-theme-button green'
 					),
 					array(
-						'title'     => esc_html__( 'Blue', 'pineapple' ),
+						'title'     => esc_html__( 'Blue', 'wpex-pineapple' ),
 						'selector'  => 'a',
 						'classes'   => 'wpex-theme-button blue'
 					),
 					array(
-						'title'     => esc_html__( 'Orange', 'pineapple' ),
+						'title'     => esc_html__( 'Orange', 'wpex-pineapple' ),
 						'selector'  => 'a',
 						'classes'   => 'wpex-theme-button orange'
 					),
 					array(
-						'title'     => esc_html__( 'Black', 'pineapple' ),
+						'title'     => esc_html__( 'Black', 'wpex-pineapple' ),
 						'selector'  => 'a',
 						'classes'   => 'wpex-theme-button black'
 					),
 					array(
-						'title'     => esc_html__( 'White', 'pineapple' ),
+						'title'     => esc_html__( 'White', 'wpex-pineapple' ),
 						'selector'  => 'a',
 						'classes'   => 'wpex-theme-button white'
 					),
 					array(
-						'title'     => esc_html__( 'Clean', 'pineapple' ),
+						'title'     => esc_html__( 'Clean', 'wpex-pineapple' ),
 						'selector'  => 'a',
 						'classes'   => 'wpex-theme-button clean'
 					),
 				),
 			),
 			array(
-				'title' => esc_html__( 'Notices', 'pineapple' ),
+				'title' => esc_html__( 'Notices', 'wpex-pineapple' ),
 				'items' => array(
 					array(
-						'title'     => esc_html__( 'Default', 'pineapple' ),
+						'title'     => esc_html__( 'Default', 'wpex-pineapple' ),
 						'block'     => 'div',
 						'classes'   => 'wpex-notice'
 					),
 					array(
-						'title'     => esc_html__( 'Info', 'pineapple' ),
+						'title'     => esc_html__( 'Info', 'wpex-pineapple' ),
 						'block'     => 'div',
 						'classes'   => 'wpex-notice wpex-info'
 					),
 					array(
-						'title'     => esc_html__( 'Warning', 'pineapple' ),
+						'title'     => esc_html__( 'Warning', 'wpex-pineapple' ),
 						'block'     => 'div',
 						'classes'   => 'wpex-notice wpex-warning'
 					),
 					array(
-						'title'     => esc_html__( 'Success', 'pineapple' ),
+						'title'     => esc_html__( 'Success', 'wpex-pineapple' ),
 						'block'     => 'div',
 						'classes'   => 'wpex-notice wpex-success'
 					),

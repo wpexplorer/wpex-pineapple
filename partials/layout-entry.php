@@ -58,7 +58,7 @@ $has_audio = wpex_has_post_audio(); ?>
 				if ( wpex_get_theme_mod( 'entry_category', true ) ) : ?>
 
 					<?php get_template_part( 'partials/entry/category' ); ?>
-					
+
 				<?php endif; ?>
 
 				<?php

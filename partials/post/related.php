@@ -54,7 +54,7 @@ $args = array(
 );
 if ( 'related_category' == $display ) {
 	$cats = wp_get_post_terms( $post_id, 'category' ); 
-	$cats_ids = array();  
+	$cats_ids = array();
 	foreach( $cats as $wpex_related_cat ) {
 		$cats_ids[] = $wpex_related_cat->term_id; 
 	}
@@ -82,7 +82,7 @@ if ( $wpex_query->have_posts() ) {
 		<?php
 		// Display heading
 		$heading = wpex_get_theme_mod( 'post_related_heading' );
-		$heading = $heading ? $heading : esc_html__( 'Related Articles', 'pineapple' );
+		$heading = $heading ? $heading : esc_html__( 'Related Articles', 'wpex-pineapple' );
 		if ( $heading ) : ?>
 			<h4 class="wpex-heading"><?php echo wpex_sanitize( $heading, 'html' ); ?></h4>
 		<?php endif; ?>
@@ -97,14 +97,12 @@ if ( $wpex_query->have_posts() ) {
 				<div class="wpex-related-post wpex-clr wpex-col wpex-col-<?php echo absint( $columns ); ?> wpex-count-<?php echo absint( $count ); ?>">
 					<?php if ( has_post_thumbnail() ) : ?>
 						<div class="wpex-related-post-thumbnail wpex-clr">
-							<a href="<?php the_permalink(); ?>" title="<?php wpex_esc_title(); ?>"><?php the_post_thumbnail( 'wpex_related_entry' ); ?></a>
+							<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'wpex_related_entry' ); ?></a>
 						</div><!-- .related-wpex-post-thumbnail -->
 					<?php endif; ?>
 					<div class="wpex-related-post-content wpex-clr">
-						<h3 class="wpex-related-post-title">
-							<a href="<?php the_permalink(); ?>" title="<?php wpex_esc_title(); ?>"><?php the_title(); ?></a>
-						</h3>
-						<div class="wpex-related-post-meta"><span class="fa fa-clock-o"></span><?php echo get_the_date(); ?></div>
+						<h3 class="wpex-related-post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+						<div class="wpex-related-post-meta"><span class="fa fa-clock-o" aria-hidden="true"></span><?php echo get_the_date(); ?></div>
 					</div><!-- .related-post-content -->
 				</div><!-- .related-post -->
 
