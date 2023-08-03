@@ -1,3 +1,6 @@
+IMPORTANT: THIS THEME HAS BEEN RETIRED AND COMPLETELY RE-DONE AS A BLOCK THEME WHICH YOU CAN DOWNLOAD HERE: https://wordpress.org/themes/pineapple-wpex/
+
+
 === WPEX Pineapple ===
 Authors: WPExplorer
 Author URI: https://www.wpexplorer.com
